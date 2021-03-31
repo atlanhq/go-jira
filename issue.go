@@ -41,15 +41,16 @@ type UpdateQueryOptions struct {
 
 // Issue represents a Jira issue.
 type Issue struct {
-	Expand         string               `json:"expand,omitempty" structs:"expand,omitempty"`
-	ID             string               `json:"id,omitempty" structs:"id,omitempty"`
-	Self           string               `json:"self,omitempty" structs:"self,omitempty"`
-	Key            string               `json:"key,omitempty" structs:"key,omitempty"`
-	Fields         *IssueFields         `json:"fields,omitempty" structs:"fields,omitempty"`
-	RenderedFields *IssueRenderedFields `json:"renderedFields,omitempty" structs:"renderedFields,omitempty"`
-	Changelog      *Changelog           `json:"changelog,omitempty" structs:"changelog,omitempty"`
-	Transitions    []Transition         `json:"transitions,omitempty" structs:"transitions,omitempty"`
-	Names          map[string]string    `json:"names,omitempty" structs:"names,omitempty"`
+	Expand         string                    `json:"expand,omitempty" structs:"expand,omitempty"`
+	ID             string                    `json:"id,omitempty" structs:"id,omitempty"`
+	Self           string                    `json:"self,omitempty" structs:"self,omitempty"`
+	Key            string                    `json:"key,omitempty" structs:"key,omitempty"`
+	Fields         *IssueFields              `json:"fields,omitempty" structs:"fields,omitempty"`
+	RenderedFields *IssueRenderedFields      `json:"renderedFields,omitempty" structs:"renderedFields,omitempty"`
+	Changelog      *Changelog                `json:"changelog,omitempty" structs:"changelog,omitempty"`
+	Transitions    []Transition              `json:"transitions,omitempty" structs:"transitions,omitempty"`
+	Names          map[string]string         `json:"names,omitempty" structs:"names,omitempty"`
+	Properties     *[]map[string]interface{} `json:"properties,omitempty" structs:"properties,omitempty"`
 }
 
 // ChangelogItems reflects one single changelog item of a history item
