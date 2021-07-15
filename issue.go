@@ -461,7 +461,7 @@ type Comment struct {
 	Self         string            `json:"self,omitempty" structs:"self,omitempty"`
 	Name         string            `json:"name,omitempty" structs:"name,omitempty"`
 	Author       User              `json:"author,omitempty" structs:"author,omitempty"`
-	Body         string            `json:"body,omitempty" structs:"body,omitempty"`
+	Body         interface{}       `json:"body,omitempty" structs:"body,omitempty"`
 	UpdateAuthor User              `json:"updateAuthor,omitempty" structs:"updateAuthor,omitempty"`
 	Updated      string            `json:"updated,omitempty" structs:"updated,omitempty"`
 	Created      string            `json:"created,omitempty" structs:"created,omitempty"`
@@ -894,7 +894,7 @@ func (s *IssueService) UpdateIssue(jiraID string, data map[string]interface{}) (
 //
 // Jira API docs: https://docs.atlassian.com/jira/REST/latest/#api/2/issue-addComment
 func (s *IssueService) AddCommentWithContext(ctx context.Context, issueID string, comment *Comment) (*Comment, *Response, error) {
-	apiEndpoint := fmt.Sprintf("rest/api/2/issue/%s/comment", issueID)
+	apiEndpoint := fmt.Sprintf("rest/api/3/issue/%s/comment", issueID)
 	req, err := s.client.NewRequestWithContext(ctx, "POST", apiEndpoint, comment)
 	if err != nil {
 		return nil, nil, err
@@ -922,7 +922,7 @@ func (s *IssueService) UpdateCommentWithContext(ctx context.Context, issueID str
 	reqBody := struct {
 		Body string `json:"body"`
 	}{
-		Body: comment.Body,
+		Body: (comment.Body).(string),
 	}
 	apiEndpoint := fmt.Sprintf("rest/api/2/issue/%s/comment/%s", issueID, comment.ID)
 	req, err := s.client.NewRequestWithContext(ctx, "PUT", apiEndpoint, reqBody)
