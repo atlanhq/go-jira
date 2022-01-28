@@ -1,13 +1,13 @@
 module github.com/atlanhq/go-jira
 
-go 1.12
+go 1.15
 
 require (
-	github.com/andygrunwald/go-jira v1.13.0
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/andygrunwald/go-jira v1.14.0
 	github.com/fatih/structs v1.1.0
-	github.com/google/go-cmp v0.5.5
-	github.com/google/go-querystring v0.0.0-20170111101155-53e6ce116135
+	github.com/golang-jwt/jwt/v4 v4.2.0
+	github.com/google/go-cmp v0.5.7
+	github.com/google/go-querystring v1.1.0
 	github.com/pkg/errors v0.9.1
 	github.com/trivago/tgo v1.0.7
 	golang.org/x/term v0.0.0-20210220032956-6a3ed077a48d
