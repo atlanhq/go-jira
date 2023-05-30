@@ -801,9 +801,14 @@ func (s *IssueService) CreateWithContext(ctx context.Context, issue *Issue) (*Is
 		return nil, nil, err
 	}
 	resp, err := s.client.Do(req, nil)
+	body, readErr := ioutil.ReadAll(resp.Body)
+	if readErr != nil {
+		return nil, resp, readErr
+	}
+	bodyString := string(body)
 	if err != nil {
 		// incase of error return the resp for further inspection
-		return nil, resp, err
+		return nil, resp, fmt.Errorf(bodyString)
 	}
 
 	responseIssue := new(Issue)
